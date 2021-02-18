@@ -11,11 +11,13 @@
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
     </div>
     {% if post.image.url != "/media/default.jpg" %}
-    <img
-      style="width: 50%; height: 50%"
-      class="img-responsive"
-      src="{{ post.image.url }}"
-    />
+    <a class="article-title" href="{% url 'post-detail' post.id %}">
+      <img
+        style="width: 50%; height: 50%"
+        class="img-responsive"
+        src="{{ post.image.url }}"
+      />
+    </a>
     {% endif %}
     <h2>
       <a class="article-title" href="{% url 'post-detail' post.id %}"
