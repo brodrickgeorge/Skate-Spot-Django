@@ -28,6 +28,7 @@
       {% endif %}
     </div>
     <h2 class="article-title">{{ object.title }}</h2>
+     <p class="article-content">{{ object.address }}</p>
     {% if object.image.url != "/media/default.jpg" %}
     <img
       style="width: 100%; height: auto"
@@ -36,28 +37,25 @@
     />
     {% endif %}
     <p class="article-content">{{ object.content }}</p>
-    <br/>
-    <hr>
+    <br />
+    <hr />
     <h2>Comments...</h2>
-    <br/>
-    {% if not post.comments.all %}
-      No Comments Yet...<a href="{% url 'add-comment' object.pk %}">Add Comment</a>
-      {% else %}
-      <a href="{% url 'add-comment' object.pk %}" >Add Comment</a>
-      <br/><br/>
-      {% for comment in post.comments.all %}
-      <strong>
-        {{comment.name}} - {{comment.date_added|date:"F d, Y" }}
-      </strong>
-      <br/>
-      {{comment.body}}
-      <br/><br/>
-      <hr>
-      {% endfor %}
-        
-    {% endif %}
-      
-
+    <br />
+    {% if not post.comments.all %} No Comments Yet...<a
+      href="{% url 'add-comment' object.pk %}"
+      >Add Comment</a
+    >
+    {% else %}
+    <a href="{% url 'add-comment' object.pk %}">Add Comment</a>
+    <br /><br />
+    {% for comment in post.comments.all %}
+    <strong> {{comment.name}} - {{comment.date_added|date:"F d, Y" }} </strong>
+    <br />
+    {{comment.body}}
+    <br /><br />
+    <hr />
+    {% endfor %} {% endif %}
   </div>
 </article>
 {% endblock content %}
+
