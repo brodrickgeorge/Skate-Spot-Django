@@ -7,7 +7,9 @@
   />
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+      <a class="mr-2" href="{% url 'user-posts' object.author.username %}"
+        >{{ object.author }}</a
+      >
       <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
 
       {% if object.author == user %}
@@ -26,7 +28,13 @@
       {% endif %}
     </div>
     <h2 class="article-title">{{ object.title }}</h2>
-    <img style="width:100%; height:auto;" src="{{ object.image.url }}">
+    {% if object.image.url != "/media/default.jpg" %}
+    <img
+      style="width: 100%; height: auto"
+      class="img-responsive"
+      src="{{ object.image.url }}"
+    />
+    {% endif %}
     <p class="article-content">{{ object.content }}</p>
   </div>
 </article>
